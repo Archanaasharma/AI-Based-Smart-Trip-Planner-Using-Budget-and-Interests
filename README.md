@@ -11,6 +11,8 @@ trip_planner/
 ├── README.md          ← This file
 └── static/
     └── index.html     ← Frontend UI (served by Flask)
+    ├── style.css
+    ├── script.js
 ```
 
 ---
@@ -22,16 +24,16 @@ trip_planner/
 pip install -r requirements.txt
 ```
 
-### Step 2 — Set your Anthropic API key (optional but recommended)
+### Step 2 — Set your Gemini key (optional but recommended)
 ```bash
 # On Mac/Linux:
-export ANTHROPIC_API_KEY=sk-ant-api03-your-key-here
+export Gemini_API_KEY=sk-ant-api03-your-key-here
 
 # On Windows CMD:
-set ANTHROPIC_API_KEY=sk-ant-api03-your-key-here
+set Gemini_API_KEY=sk-ant-api03-your-key-here
 
 # On Windows PowerShell:
-$env:ANTHROPIC_API_KEY="sk-ant-api03-your-key-here"
+$env:Gemini_API_KEY="sk-ant-api03-your-key-here"
 ```
 > If you skip this, you can enter the key directly in the app UI.
 
@@ -45,8 +47,8 @@ Then open your browser and go to:
 
 ---
 
-## 🔑 Getting an Anthropic API Key
-1. Go to https://console.anthropic.com
+## 🔑 Getting an Gemini API Key
+1. Go to https://aistudio.google.com
 2. Sign up / Log in
 3. Click "API Keys" → "Create Key"
 4. Copy the key (starts with `sk-ant-api03-...`)
@@ -60,7 +62,6 @@ Then open your browser and go to:
 | GET    | `/`             | Serves the frontend HTML           |
 | GET    | `/health`       | Server health check                |
 | POST   | `/api/plan`     | Get all trip destinations from AI  |
-| POST   | `/api/itinerary`| Get full day-by-day itinerary      |
 
 ### POST /api/plan — Request body:
 ```json
@@ -111,7 +112,7 @@ Then open your browser and go to:
 → Make sure `python server.py` is running in terminal
 
 **"Invalid API key" error:**
-→ Check your key at https://console.anthropic.com
+→ Check your key at https://console.aistudio.com
 
 **"ModuleNotFoundError: flask":**
 → Run `pip install -r requirements.txt`
