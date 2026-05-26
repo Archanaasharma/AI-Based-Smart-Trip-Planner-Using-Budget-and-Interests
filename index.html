@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>AI Trip Planner Buddy — India </title>
+</head>
+<body>
+<div class="app">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="htag">AI Trip Planner — India</div>
+    <h1>Every place you can go<br>within your <span>budget</span></h1>
+    <p>Powered by Buddy AI · 100+ destinations · Real cost calculation</p>
+    <div class="hero-badges">
+      <span class="hbadge">🤖 Gemini 2.0 Flash</span>
+      <span class="hbadge">🗺️ 100+ Indian Cities</span>
+      <span class="hbadge">⚡ Auto-retry on limit</span>
+      <span class="hbadge">📅 Days auto-calculated</span>
+    </div>
+  </div>
+
+  <!-- SERVER STATUS -->
+  <div id="status-bar" class="status-bar status-ok">
+    <div class="status-dot dot-ok" id="status-dot"></div>
+    <span id="status-text">Checking server connection...</span>
+  </div>
+
+  <!-- FORM -->
+  <div id="fs">
+
+    <!-- GEMINI KEY STATUS — key is baked into server.py, no input needed -->
+    <div class="gemini-card">
+      <div class="gemini-logo">
+        <div class="gemini-icon">✦</div>
+        <div>
+          <div class="gemini-title">Google Gemini AI — Connected</div>
+          <div class="gemini-sub">Powered by gemini-2.0-flash · Key set in server.py</div>
+        </div>
+      </div>
+      <div class="key-status">
+        <div class="key-dot"></div>
+        <span class="key-text">API Key Active</span>
+        <span class="key-val">Secure Server Mode</span>
+      </div>
+    </div>
+
+    <!-- Budget & City -->
+    <div class="card">
+      <div class="sl">Budget & Starting City</div>
+      <div class="row2">
+        <div>
+          <label class="fl">Total Budget (₹)</label>
+          <div class="iw"><span class="ipfx">₹</span><input type="number" id="budget" placeholder="10000" value="15000" min="500"></div>
+        </div>
+        <div>
+          <label class="fl">Your City</label>
+          <input type="text" id="location" placeholder="Delhi" value="Delhi">
+        </div>
+      </div>
+    </div>
+
+    <!-- Travel Interests -->
+    <div class="card">
+      <div class="sl">Travel Interest</div>
+      <div class="chips" id="ichips">
+        <div class="chip on"  data-v="Adventure">🧗 Adventure</div>
+        <div class="chip"     data-v="Relaxation">🌿 Relaxation</div>
+        <div class="chip"     data-v="Spiritual">🛕 Spiritual</div>
+        <div class="chip"     data-v="Cultural">🏛️ Cultural</div>
+        <div class="chip"     data-v="Hill Station">⛰️ Hill Station</div>
+        <div class="chip"     data-v="Beach">🏖️ Beach</div>
+        <div class="chip"     data-v="Wildlife">🐅 Wildlife</div>
+        <div class="chip"     data-v="Desert">🏜️ Desert</div>
+        <div class="chip"     data-v="Lakes & Rivers">🏞️ Lakes</div>
+        <div class="chip"     data-v="Heritage & Forts">🏰 Heritage</div>
+        <div class="chip"     data-v="Food & Cuisine">🍛 Food</div>
+        <div class="chip"     data-v="Backpacking">🎒 Backpacking</div>
+      </div>
+    </div>
+
+    <!-- Group Type -->
+    <div class="card">
+      <div class="sl">Group Type</div>
+      <div class="gcards" id="gcards">
+        <div class="gc on" data-v="Solo"><div class="ico">🧍</div><div class="lbl">Solo</div><div class="sub">Just me</div></div>
+        <div class="gc"    data-v="Friends"><div class="ico">👥</div><div class="lbl">Friends</div><div class="sub">Group fun</div></div>
+        <div class="gc"    data-v="Family"><div class="ico">👨‍👩‍👧</div><div class="lbl">Family</div><div class="sub">All ages</div></div>
+      </div>
+      <div class="prow" id="prow" style="display:none">
+        <span class="plbl">Number of people</span>
+        <div class="ctr">
+          <button class="cbtn" id="dec">−</button>
+          <span class="cval" id="pc">2</span>
+          <button class="cbtn" id="inc">+</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="sbtn" id="go">Find ALL Possible Trips ↗</button>
+    <div class="err" id="err"></div>
+  </div>
+
+  <!-- LOADING -->
+  <div id="ls" style="display:none">
+    <div class="spin-wrap">
+      <div class="spinner"></div>
+      <p class="smsg" id="smsg">Gemini is scanning all of India...</p>
+      <p class="smodel" id="smodel">Using gemini-2.0-flash · Auto-retry enabled</p>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="rs" style="display:none">
+    <div class="res-hdr">
+      <div class="res-title" id="rtitle">All Possible Destinations</div>
+      <button class="back-btn" onclick="goBack()">← Change inputs</button>
+    </div>
+    <div id="rc"></div>
+  </div>
+
+</div>
+
+<!-- ITINERARY MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title" id="modal-title">Itinerary</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div id="modal-loading" style="text-align:center;padding:2rem">
+      <div class="spinner" style="margin:0 auto 1rem"></div>
+      <p style="font-size:13px;color:#999">Gemini is generating your itinerary...</p>
+    </div>
+    <div class="modal-body" id="modal-body" style="display:none"></div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
