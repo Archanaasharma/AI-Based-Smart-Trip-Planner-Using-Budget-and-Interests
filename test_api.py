@@ -1,6 +1,6 @@
 import google.generativeai as genai
 
-api_key= "AIzaSyDn2jgY4qtOI1U5uXmaW8oZnBZIEbJGvpc"
+api_key= "Enter API Key"
 genai.configure(api_key=api_key)
 print("checking available models:...\n")
 valid_models=[]
